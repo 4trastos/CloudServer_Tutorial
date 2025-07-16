@@ -40,6 +40,7 @@ Aquí tienes un listado completo y profesional de los **comandos `occ` (ownCloud
 | `sudo nextcloud.occ user:delete <usuario>`        | Elimina un usuario.                                    |
 | `sudo nextcloud.occ user:resetpassword <usuario>` | Cambia la contraseña de un usuario.                    |
 | `sudo nextcloud.occ user:report`                  | Muestra estadísticas generales de usuarios.            |
+| `sudo nextcloud.occ user:info <usuario>`          | Muestra datos completos de usuarios.                   |
 
 🔎 **Importante:** El `<usuario>` debe ser el **nombre de usuario interno** (no el nombre completo).
 
