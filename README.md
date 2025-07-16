@@ -100,7 +100,131 @@ sudo nextcloud.occ user:list --output=json
 | `sudo nextcloud.occ background:cron`      | Ejecuta tareas programadas (CRON) manualmente.                          |
 | `sudo nextcloud.occ encryption:disable`   | Desactiva el cifrado de archivos (si está habilitado).                  |
 
+---
 
+## 🔐 Recomendaciones Finales para Snap + Nextcloud
+
+### ✅ 1. Renovación automática de certificados (Let's Encrypt)
+
+El Snap de Nextcloud **renueva automáticamente** los certificados emitidos por Let's Encrypt.
+
+🔍 **Verifica el estado del servicio snapd**:
+
+```bash
+sudo systemctl status snapd
+```
+
+🛠️ Si tienes dudas sobre si el cron de renovación está funcionando, puedes forzar una renovación con:
+
+```bash
+sudo nextcloud.enable-https lets-encrypt
+```
+
+(Esto no reinstala, simplemente fuerza la renovación si es necesario.)
+
+---
+
+### 🔁 2. Verifica tu HTTPS con SSL Labs
+
+🔗 [https://www.ssllabs.com/ssltest/analyze.html?d=cloud.australair.com](https://www.ssllabs.com/ssltest/analyze.html?d=cloud.australair.com)
+
+Idealmente obtendrás una calificación **A+** si configuraste bien TLS y estás actualizando regularmente.
+
+---
+
+### 🔒 3. Aumentar la seguridad de Nextcloud
+
+#### 🔑 Autenticación de dos factores (2FA)
+
+Actívala para los usuarios desde la interfaz de administración web:
+
+* App: `Two-Factor TOTP Provider`
+* Puedes obligar el 2FA desde **"Settings > Security"**
+
+#### 💾 Backups automáticos
+
+En Snap, puedes hacer backups completos con:
+
+```bash
+sudo nextcloud.export
+```
+
+Este comando genera un archivo `.tar.gz` con todos los datos y configuraciones.
+
+Para automatizarlo, puedes usar `cron`:
+
+```bash
+crontab -e
+```
+
+Agrega, por ejemplo:
+
+```cron
+0 2 * * * /usr/bin/sudo nextcloud.export -y --output /var/backups/nextcloud-backup-$(date +\%Y-\%m-\%d).tar.gz
+```
+
+Asegúrate de tener espacio en disco o monta un disco externo.
+
+#### 🔍 Escáner de seguridad de Nextcloud
+
+Escanea tu dominio:
+
+🔗 [https://scan.nextcloud.com](https://scan.nextcloud.com)
+
+Solo debes ingresar tu dominio (ej. `cloud.australair.com`), y te dirá si hay vulnerabilidades, apps sin actualizar o configuración insegura.
+
+---
+
+## 🛠️ Comandos útiles para gestionar Nextcloud desde la terminal (Snap)
+
+### 📦 Gestión de apps
+
+```bash
+sudo nextcloud.occ app:list
+sudo nextcloud.occ app:install <app_id>
+sudo nextcloud.occ app:disable <app_id>
+sudo nextcloud.occ app:enable <app_id>
+```
+
+### 🔁 Mantenimiento y actualizaciones
+
+```bash
+sudo nextcloud.occ maintenance:mode --on
+sudo nextcloud.occ maintenance:mode --off
+sudo nextcloud.occ upgrade
+sudo nextcloud.occ check
+sudo nextcloud.occ status
+```
+
+### 🔍 Logs y debugging
+
+```bash
+sudo nextcloud.occ log:tail
+sudo nextcloud.occ log:file
+sudo nextcloud.occ config:list system
+```
+
+### 🧼 Limpieza
+
+```bash
+sudo nextcloud.occ files:cleanup
+sudo nextcloud.occ trashbin:cleanup
+sudo nextcloud.occ versions:cleanup
+```
+
+---
+
+## 🎁 BONUS: Script para listar nombres internos de usuarios (si están mal codificados)
+
+Puedes ejecutar:
+
+```bash
+for u in $(sudo nextcloud.occ user:list --output=json | jq -r 'keys[]'); do
+  echo -n "$u → "; sudo nextcloud.occ user:info "$u" | grep -i 'uid';
+done
+```
+
+Esto imprime cada nombre mostrado y su `uid` real.
 
 ---
 
