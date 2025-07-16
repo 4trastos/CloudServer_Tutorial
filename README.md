@@ -27,6 +27,82 @@ Se cubrirán aspectos de la gestión de redes y servicios a nivel básico e inte
 
 ---
 
+Aquí tienes un listado completo y profesional de los **comandos `occ` (ownCloud Console Command)** disponibles en Nextcloud para gestión de usuarios y administración general — **especialmente útil en instalaciones Snap como la tuya**:
+
+---
+
+## 🧑‍💻 **1. Comandos para Gestión de Usuarios**
+
+| Comando                                           | Descripción                                            |
+| ------------------------------------------------- | ------------------------------------------------------ |
+| `sudo nextcloud.occ user:list`                    | Lista todos los usuarios.                              |
+| `sudo nextcloud.occ user:add <usuario>`           | Crea un nuevo usuario (te pedirá nombre y contraseña). |
+| `sudo nextcloud.occ user:delete <usuario>`        | Elimina un usuario.                                    |
+| `sudo nextcloud.occ user:resetpassword <usuario>` | Cambia la contraseña de un usuario.                    |
+| `sudo nextcloud.occ user:report`                  | Muestra estadísticas generales de usuarios.            |
+
+🔎 **Importante:** El `<usuario>` debe ser el **nombre de usuario interno** (no el nombre completo).
+
+Para encontrar el nombre interno exacto, ejecuta:
+
+```bash
+sudo nextcloud.occ user:list --output=json
+```
+
+---
+
+## 🔐 **2. Gestión de Grupos**
+
+| Comando                                                 | Descripción                   |
+| ------------------------------------------------------- | ----------------------------- |
+| `sudo nextcloud.occ group:list`                         | Lista todos los grupos.       |
+| `sudo nextcloud.occ group:add <grupo>`                  | Crea un grupo nuevo.          |
+| `sudo nextcloud.occ group:delete <grupo>`               | Elimina un grupo.             |
+| `sudo nextcloud.occ group:adduser <grupo> <usuario>`    | Añade un usuario a un grupo.  |
+| `sudo nextcloud.occ group:removeuser <grupo> <usuario>` | Quita un usuario de un grupo. |
+
+---
+
+## 🛠️ **3. Comandos Administrativos Generales**
+
+| Comando                                              | Descripción                                                     |
+| ---------------------------------------------------- | --------------------------------------------------------------- |
+| `sudo nextcloud.occ status`                          | Estado general del sistema (versión, base de datos, apps, etc). |
+| `sudo nextcloud.occ check`                           | Verifica la instalación de Nextcloud.                           |
+| `sudo nextcloud.occ config:list`                     | Muestra toda la configuración.                                  |
+| `sudo nextcloud.occ config:system:get <clave>`       | Muestra valor específico del archivo `config.php`.              |
+| `sudo nextcloud.occ maintenance:mode --on` / `--off` | Activa o desactiva modo mantenimiento.                          |
+| `sudo nextcloud.occ log:tail`                        | Muestra logs en tiempo real.                                    |
+| `sudo nextcloud.occ update:check`                    | Verifica si hay actualizaciones.                                |
+
+---
+
+## 🧩 **4. Aplicaciones (Apps)**
+
+| Comando                                | Descripción                                  |
+| -------------------------------------- | -------------------------------------------- |
+| `sudo nextcloud.occ app:list`          | Lista todas las apps instaladas y su estado. |
+| `sudo nextcloud.occ app:enable <app>`  | Habilita una app.                            |
+| `sudo nextcloud.occ app:disable <app>` | Desactiva una app.                           |
+| `sudo nextcloud.occ app:install <app>` | Instala una nueva app.                       |
+| `sudo nextcloud.occ app:remove <app>`  | Elimina una app.                             |
+
+---
+
+## ☁️ **5. Otras Utilidades útiles**
+
+| Comando                                   | Descripción                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| `sudo nextcloud.occ files:scan --all`     | Escanea todos los archivos de todos los usuarios (reconstruye índices). |
+| `sudo nextcloud.occ files:scan <usuario>` | Escanea solo los archivos de un usuario.                                |
+| `sudo nextcloud.occ files:cleanup`        | Limpia archivos orfanados.                                              |
+| `sudo nextcloud.occ background:cron`      | Ejecuta tareas programadas (CRON) manualmente.                          |
+| `sudo nextcloud.occ encryption:disable`   | Desactiva el cifrado de archivos (si está habilitado).                  |
+
+
+
+---
+
 ## English 🇬🇧
 
 # Ubuntu Server Configuration for Cloud Services
