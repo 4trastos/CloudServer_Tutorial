@@ -126,7 +126,7 @@ sudo nextcloud.enable-https lets-encrypt
 
 ### 🔁 2. Verifica tu HTTPS con SSL Labs
 
-🔗 [https://www.ssllabs.com/ssltest/analyze.html?d=cloud.australair.com](https://www.ssllabs.com/ssltest/analyze.html?d=cloud.australair.com)
+🔗 [https://www.ssllabs.com/ssltest/analyze.html?d=tu_dominio.com](https://www.ssllabs.com/ssltest/analyze.html?d=tu_dominio.com)
 
 Idealmente obtendrás una calificación **A+** si configuraste bien TLS y estás actualizando regularmente.
 
@@ -171,7 +171,7 @@ Escanea tu dominio:
 
 🔗 [https://scan.nextcloud.com](https://scan.nextcloud.com)
 
-Solo debes ingresar tu dominio (ej. `cloud.australair.com`), y te dirá si hay vulnerabilidades, apps sin actualizar o configuración insegura.
+Solo debes ingresar tu dominio (ej. `tu.dominio.com`), y te dirá si hay vulnerabilidades, apps sin actualizar o configuración insegura.
 
 ---
 
