@@ -2,7 +2,7 @@
 
 Este manual contiene los comandos esenciales para gestionar la base de datos de Nextcloud desde la terminal de Ubuntu mediante el cliente MySQL integrado en el paquete Snap.
 
-## 🛠 Acceso Inicial
+## Acceso Inicial
 Para entrar en la consola de la base de datos:
 ```bash
 sudo nextcloud.mysql-client
@@ -53,7 +53,7 @@ DELETE FROM oc_bruteforce_attempts WHERE ip = '192.168.1.1';
 
 ---
 
-## 👥 Gestión de Usuarios
+## Gestión de Usuarios
 
 Consultas útiles para verificar el estado de las cuentas:
 
