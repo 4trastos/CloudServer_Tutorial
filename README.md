@@ -102,7 +102,7 @@ sudo nextcloud.occ user:list --output=json
 
 ---
 
-## 🔐 Recomendaciones Finales para Snap + Nextcloud
+## 🔐 Recomendaciones Finales para Snap + Nextcloud + Reverse Proxy (Gnix)
 
 ### ✅ 1. Renovación automática de certificados (Let's Encrypt)
 
@@ -121,6 +121,12 @@ sudo nextcloud.enable-https lets-encrypt
 ```
 
 (Esto no reinstala, simplemente fuerza la renovación si es necesario.)
+
+Renovación de certificados de Nginx:
+
+```bash
+sudo certbot renew
+```
 
 ---
 
